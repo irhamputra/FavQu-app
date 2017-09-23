@@ -2,7 +2,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Author</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="onClose()">
+        <ion-icon name="arrow-down"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>The Quotes</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,8 +15,11 @@
 
 <ion-content padding text-center>
   <ion-card padding>
+    <ion-card-header>
+      <h3>{{ person }}</h3>
+    </ion-card-header>
     <ion-card-content>
-      text
+      <p>{{ text }}</p>
     </ion-card-content>
     <ion-row>
       <ion-col>
@@ -19,5 +27,4 @@
       </ion-col>
     </ion-row>
   </ion-card>
-  <button ion-button color="danger">Close</button>
 </ion-content>
