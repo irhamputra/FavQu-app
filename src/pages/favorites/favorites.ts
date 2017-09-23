@@ -20,5 +20,19 @@ export class FavoritesPage {
   onViewQuote(quote: Quote){
     const modal = this.modalCtrl.create(QuotePage, quote);
     modal.present();
+    modal.onDidDismiss((remove: boolean) => {
+      if (remove){
+        this.quoteService.removeFromFavorite(quote);
+
+        // simple reload page after unfavorite
+        // this.quotes = this.quoteService.getFavorite();
+
+        // Advance reload page after unfavorite
+        const position = this.quotes.findIndex((quoteElement: Quote) => {
+          return quoteElement.id == quote.id
+        });
+        this.quotes.splice(position, 1);
+      }
+    });
   }
 }
