@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {NavParams, AlertController} from "ionic-angular";
 import {Quote} from "../../data/quote.interface";
+import {QuotesService} from "../../services/quotes";
 
 @Component({
   selector: 'page-quotes',
@@ -9,7 +10,9 @@ import {Quote} from "../../data/quote.interface";
 export class QuotesPage implements OnInit {
   quoteGroup: {category: string, quotes: Quote[], icon: string};
 
-  constructor(public navParams: NavParams, private alertCrtl: AlertController) {
+  constructor(public navParams: NavParams,
+              private alertCrtl: AlertController,
+              private quotesService: QuotesService) {
   }
 
   // with OnInit LifeCycle
@@ -20,12 +23,11 @@ export class QuotesPage implements OnInit {
   onAddToFavorite(selectedQuote: Quote) {
     const alert = this.alertCrtl.create({
       title: 'Add Quotes',
-      message: 'Are you sure?',
+      message: 'Are you sure do you want to favorite this quote?',
       buttons: [{
         text: 'OK',
         handler: () => {
-          console.log('Ok');
-          console.log(selectedQuote)
+          this.quotesService.addToFavorite(selectedQuote)
         }
       },
         {
