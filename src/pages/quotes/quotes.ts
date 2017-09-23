@@ -25,13 +25,13 @@ export class QuotesPage implements OnInit {
       title: 'Add Quotes',
       message: 'Are you sure do you want to favorite this quote?',
       buttons: [{
-        text: 'OK',
+        text: 'Yes',
         handler: () => {
           this.quotesService.addToFavorite(selectedQuote)
         }
       },
         {
-          text: 'Cancel',
+          text: 'No',
           role: 'cancel',
           handler: () => {
             console.log('Cancelled')
@@ -40,6 +40,34 @@ export class QuotesPage implements OnInit {
     });
 
     alert.present();
+  }
+
+  onRemoveQuote(quote: Quote){
+    // Adding Alert Controller
+    const alert = this.alertCrtl.create({
+      title: 'Remove Quotes',
+      message: 'Are you sure want to remove your quotes from favorites?',
+      buttons: [{
+        text: 'Remove it',
+        handler: () => {
+          this.quotesService.removeFromFavorite(quote);
+        }
+      },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel remove task')
+          }
+        }]
+    });
+    // Showing Alert
+
+    alert.present();
+  }
+
+  isFavorite(quote: Quote){
+    return this.quotesService.isQuoteFavorite(quote);
   }
 
   // with Elvis Operator (?)

@@ -24,10 +24,10 @@ export class FavoritesPage {
       if (remove){
         this.quoteService.removeFromFavorite(quote);
 
-        // simple reload page after unfavorite
+        // #1 simple reload page after unfavorite
         // this.quotes = this.quoteService.getFavorite();
 
-        // Advance reload page after unfavorite
+        // #2 Advance reload page after unfavorite
         const position = this.quotes.findIndex((quoteElement: Quote) => {
           return quoteElement.id == quote.id
         });
